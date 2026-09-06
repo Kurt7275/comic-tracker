@@ -4,11 +4,13 @@
     <!-- ── ComicVerse Header ── -->
     <header class="cs-header">
       <div class="cs-header-logo">
-        <span class="cs-header-logo-icon">📚</span>
+        <span class="cs-header-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </span>
         <span class="cs-header-logo-text">ComicVerse</span>
       </div>
       <button class="cs-dark-toggle" @click="isDark = !isDark" type="button">
-        {{ isDark ? '☀️ Light' : '🌙 Dark' }}
+        {{ isDark ? 'Light Mode' : 'Dark Mode' }}
       </button>
     </header>
 
@@ -88,7 +90,7 @@
             </button>
 
             <button type="button" class="cs-btn-secondary" @click="handleDemo" :disabled="isLoading">
-              ⚡ Try Demo — No sign up needed
+              Try Demo — No sign up needed
             </button>
 
             <div class="cs-divider">or continue with</div>
@@ -161,7 +163,7 @@ async function handleRegister() {
     username: form.firstName.toLowerCase().replace(/\s+/g, '_')
   })
   alert.type = 'success'
-  alert.message = '🎉 Account created! Loading your shelf…'
+  alert.message = 'Account created! Loading your shelf…'
   setTimeout(() => router.push('/shelf'), 600)
   isLoading.value = false
 }

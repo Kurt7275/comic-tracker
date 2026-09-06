@@ -7,7 +7,7 @@ const DEFAULT_USER = {
   name: 'Captain Comic',
   username: 'captain_comic',
   email: 'reader@comicverse.online',
-  avatar: '🦸‍♂️',
+  avatar: 'HERO',
   bio: 'Comic archivist, manga binger, and multiverse explorer.',
   favoriteUniverse: 'Marvel & Shonen',
   favoriteQuote: 'With great power comes great responsibility.',

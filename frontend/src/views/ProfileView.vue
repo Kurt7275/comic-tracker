@@ -13,7 +13,7 @@
         <div class="profile-avatar-row">
           <div class="avatar-display-box">
             <img v-if="isImageAvatar(comicStore.user.avatar)" :src="comicStore.user.avatar" alt="Avatar" style="width:100%; height:100%; object-fit:cover; border-radius:6px;" />
-            <span v-else>{{ comicStore.user.avatar || '🦸‍♂️' }}</span>
+            <span v-else>{{ comicStore.user.avatar || 'HERO' }}</span>
           </div>
           <div>
             <h2 style="font-family: var(--font-comic); font-size: 1.8rem;">{{ comicStore.user.name }}</h2>
@@ -28,7 +28,7 @@
           <label class="f-input-label">Pick Superhero Avatar or Upload Photo</label>
           <div class="avatar-options-row">
             <button
-              v-for="av in ['🦸‍♂️', '🦹‍♂️', '🦇', '🕷️', '⚡', '🏴‍☠️', '⚔️', '🐲', '🧙‍♂️', '🥷', '🤖', '🔥']"
+              v-for="av in ['HERO', 'VILLAIN', 'KNIGHT', 'SHADOW', 'NINJA', 'CYBORG', 'PIRATE', 'ARCH-MAGE']"
               :key="av"
               class="avatar-pick-btn"
               :class="{ active: comicStore.user.avatar === av }"
@@ -38,7 +38,7 @@
             </button>
 
             <button type="button" class="avatar-pick-btn upload-btn" @click="triggerPhotoPicker" title="Upload Custom Photo">
-              📷
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
             </button>
             <input ref="fileInputRef" type="file" accept="image/*" style="display:none" @change="handlePhotoUpload" />
           </div>
