@@ -134,8 +134,7 @@ function exportBackup() {
 }
 
 function handleLogout() {
-  comicStore.logout()
-  router.push('/')
+  comicStore.triggerLogout(router)
 }
 </script>
 

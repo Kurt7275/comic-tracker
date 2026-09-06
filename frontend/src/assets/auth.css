@@ -375,6 +375,8 @@
   position: relative;
   width: 100%;
   aspect-ratio: 2 / 3;
+  flex-shrink: 0;
+  max-height: 220px;
   background: #111111;
   border-bottom: 2px solid #111111;
   overflow: hidden;
@@ -1550,9 +1552,9 @@
   color: #F5D13B;
   line-height: 0.95;
   letter-spacing: 0.04em;
-  -webkit-text-stroke: 3px #111111;
+  -webkit-text-stroke: 3.5px #111111;
   paint-order: stroke fill;
-  text-shadow: 4px 4px 0px #111111;
+  text-shadow: 4.5px 4.5px 0px #111111;
   margin: 0;
 }
 

@@ -19,12 +19,16 @@
 
     <!-- Global Pop-Art Add Modal -->
     <AddModal />
+
+    <!-- Global Pop-Art Logout Overlay -->
+    <LogoutOverlay />
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted } from 'vue'
 import AddModal from './components/AddModal.vue'
+import LogoutOverlay from './components/LogoutOverlay.vue'
 
 const loading = ref(true)
 

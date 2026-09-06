@@ -197,8 +197,7 @@ function triggerAddModal() {
 
 function handleSignOut() {
   isMenuOpen.value = false
-  comicStore.logout()
-  router.push('/')
+  comicStore.triggerLogout(router)
 }
 
 function setTheme(themeId) {

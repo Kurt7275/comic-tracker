@@ -201,6 +201,8 @@ export const comicStore = reactive({
     chaptersGoal: 1000
   }),
 
+  isLoggingOut: false,
+
   // Actions
   login(userData) {
     this.user.isLoggedIn = true
@@ -215,6 +217,18 @@ export const comicStore = reactive({
   logout() {
     this.user.isLoggedIn = false
     localStorage.setItem(USER_SESSION_KEY, JSON.stringify(this.user))
+  },
+
+  triggerLogout(router) {
+    if (this.isLoggingOut) return
+    this.isLoggingOut = true
+    setTimeout(() => {
+      this.logout()
+      this.isLoggingOut = false
+      if (router) {
+        router.push('/')
+      }
+    }, 1800)
   },
 
   setTheme(themeName) {
