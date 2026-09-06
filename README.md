@@ -1,185 +1,175 @@
-# 📚 ComicShelf
-
-> **Your entire reading life, one shelf.**
-> A personal comic, manga, manhwa & webtoon tracker — with streaks, achievements, timelines, watchlists, and stats.
-
----
-
-## 🦸 What is ComicShelf?
-
-ComicShelf is a **personal media tracker** built for comic readers and manga fans. Track what you own, what you're reading, and what you want to read next — all in one beautifully designed shelf.
-
-
----
-
-## 🧱 Tech Stack
-
-| Layer | Technology |
-|-------|-----------|
-| Framework | **Vue 3** (Composition API) |
-| Bundler | **Vite** |
-| Routing | **Vue Router** |
-| State Management | **Reactive store** (`useComicStore.js`) |
-| Persistence | **localStorage** with JSON backup/restore |
-| Styling | **Vanilla CSS** — comic book design system |
-| Fonts | **Bangers**, **Comic Neue**, **Outfit** (Google Fonts) |
-
----
-
-## 🗂️ Project Structure
-
+```text
+  ██████╗ ██████╗ ███╗   ███╗██╗██╗██╗   ██╗███████╗██████╗ ███████╗███████╗
+ ██╔════╝██╔═══██╗████╗ ████║██║██║██║   ██║██╔════╝██╔══██╗██╔════╝██╔════╝
+ ██║     ██║   ██║██╔████╔██║██║██║██║   ██║█████╗  ██████╔╝███████╗█████╗  
+ ██║     ██║   ██║██║╚██╔╝██║██║██║╚██╗ ██╔╝██╔══╝  ██╔══██╗╚════██║██╔══╝  
+ ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║██║ ╚████╔╝ ███████╗██║  ██║███████║███████╗
+  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝╚═╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝
 ```
-frontend/
-├── index.html
-└── src/
-    ├── App.vue
-    ├── main.js                    ← Vue Router setup & app entry
-    ├── assets/
-    │   ├── base.css               ← Design tokens, resets, global styles
-    │   └── auth.css               ← Landing page, showcase, login styles
-    ├── components/
-    │   └── Navbar.vue             ← Top navigation for logged-in views
-    ├── stores/
-    │   └── useComicStore.js       ← Global state: library, streaks, XP, user
-    └── views/
-        ├── LandingView.vue        ← Home page (/) with animated 2x2 showcase
-        ├── LoginView.vue          ← Standalone sign-in page (/login)
-        ├── RegisterView.vue       ← Registration flow
-        ├── ShelfView.vue          ← Main shelf — Grid / Spines / List modes
-        ├── DiscoverView.vue       ← Browse & discover new titles
-        ├── TimelinesView.vue      ← Universe reading orders
-        ├── WatchlistView.vue      ← Anime & TV adaptations tracker
-        ├── StatsView.vue          ← Reading heatmap & analytics
-        ├── AchievementsView.vue   ← Badges, XP & reader rank system
-        └── ProfileView.vue        ← User profile & data backup
+
+<div align="center">
+
+# 💥 COMICVERSE 💥
+### *YOUR ENTIRE READING LIFE. ONE POP-ART UNIVERSE.*
+
+![Vue 3](https://img.shields.io/badge/Vue%203-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFD600)
+![Pinia Architecture](https://img.shields.io/badge/Pinia-Store_Modularized-7C3AED?style=for-the-badge&logo=vue.js&logoColor=FFF)
+![Backend Ready](https://img.shields.io/badge/Backend-API_Ready-00E676?style=for-the-badge&logo=express&logoColor=FFF)
+![License](https://img.shields.io/badge/License-MIT-FF1744?style=for-the-badge)
+
+**ComicVerse** is a modern, pop-art styled media tracker built for comic, manga, manhwa, and webtoon enthusiasts. Track reading progress, universe timelines, adaptations, streaks, and achievements—all wrapped in a vibrant, halftone-inspired design system.
+
+[⚡ Demo Features](#-features) • [🚀 Getting Started](#-getting-started) • [🏗️ Architecture](#-project-architecture) • [🎨 Pop Art Design System](#-pop-art-design-system)
+
+---
+
+</div>
+
+## 💥 POW! WHY COMICVERSE?
+
+```text
+ ┌─────────────────────────────────────────────────────────────────────────┐
+ │ 🦸  TRACK EVERYTHING  │ Manga • Manhwa • Webtoons • Comics • Novels     │
+ │ 🔥  DAILY STREAKS     │ Flame counters & longest streak tracking        │
+ │ 🗓️  UNIVERSE TIMELINES│ MCU, Batman, Spider-Verse & One Piece Orders    │
+ │ 📺  WATCHLIST         │ Anime, TV shows & movie adaptations             │
+ │ 🏆  ACHIEVEMENTS      │ Earn XP & level up from Initiate to Arch-Mage   │
+ │ 🔌  BACKEND READY     │ Repository & Service abstraction pre-built      │
+ └─────────────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## 🗺️ Pages & Routes
+## 🏗️ PROJECT ARCHITECTURE
 
-| Route | Page | Description |
-|-------|------|-------------|
-| `/` | **Landing** | Hero section with swinging 2x2 comic preview, features grid, CTA |
-| `/login` | **Sign In** | Comic-styled card with Google Sign-In button |
-| `/shelf` | **My Shelf** | Your comic library — Grid, 3D Book Spines, or List view |
-| `/discover` | **Discover** | Browse and search new comics, manga & manhwa |
-| `/timelines` | **Timelines** | Universe reading orders (MCU, Batman Saga, One Piece, etc.) |
-| `/watchlist` | **Watchlist** | Track anime & live-action adaptations by season & episode |
-| `/stats` | **Stats** | GitHub-style activity heatmap, reading velocity, format breakdown |
-| `/achievements` | **Achievements** | Badge system, XP, and reader rank from Initiate to Arch-Mage |
-| `/profile` | **Profile** | User info, data backup to JSON, and restore |
+ComicVerse follows an **Enterprise-Grade Modular Architecture** designed for zero-friction backend integration:
 
----
-
-## 🎨 Design System
-
-The entire app uses a **comic book aesthetic**:
-
-- **Background**: Parchment `#FAF4E8` with halftone dot texture
-- **Shadows**: Hard `4px 4px 0 #111111` — no blur, pure comic book
-- **Borders**: Solid `2.5px solid #111111` everywhere
-- **Color Palette**:
-
-| Token | Color | Hex |
-|-------|-------|-----|
-| Red | Crimson | `#FF1744` |
-| Yellow | Electric | `#FFD600` |
-| Green | Neon | `#00E676` |
-| Purple | Royal | `#AA00FF` |
-| Orange | Flame | `#FF6D00` |
-
-- **Typography**: `Bangers` for headlines, `Comic Neue` for body, `Outfit` for UI elements
-
----
-
-## Features
-
-### 🏠 Landing Page
-- Full hero layout with headline, description, and `START NOW` CTA
-- **Animated 2x2 comic showcase** — pendulum swing animation, hoverable cards
-- Each card shows: cover art, type banner (`COMICS`, `MANHWA`, `WEBTOON`, `MANGA`), chapter progress, star rating badge, streak pill, and action buttons
-- "Everything in One Shelf" 6-feature grid
-- "How ComicShelf Works" 4-step guide
-- Format badges row (Manga, Comic, Manhwa, Webtoon, Graphic Novel, Light Novel)
-- Bottom crimson CTA banner
-
-### 🔐 Login Page
-- Dedicated full-page route (`/login`)
-- Comic-styled card: red header with **COMICSHELF** in yellow Bangers font
-- Single yellow **SIGN IN WITH GOOGLE!** button with colored Google icon
-- Back arrow button (top-left) returns to landing page
-
-### 📚 Shelf (`/shelf`)
-- **3 view modes**: Grid cards, 3D Book Spines, flat List
-- Chapter progress bars, star ratings, streak flames
-- Filter by status: Reading / Completed / Paused / Dropped / Want to Read
-
-### 🔥 Reading Streaks
-- Flame badges (`🔥 7D`, `🔥 5D`) tracking consecutive daily reading
-- Longest streak record stored in profile
-
-### ⭐ Star Ratings
-- Comic star polygon SVG badge per title
-- Ratings like `10/10`, `9/10`, `8/10` displayed inline
-
-### 🏆 Achievements (`/achievements`)
-- Badge unlock system tied to reading milestones
-- XP system with reader ranks: Initiate > Reader > Scholar > Sage > Arch-Mage > Multiverse Arch-Mage
-
-### 📊 Stats (`/stats`)
-- GitHub-style annual reading activity heatmap
-- Format breakdown: Manga / Comics / Manhwa / Webtoon
-- Reading velocity and chapter count charts
-
-### 📺 Watchlist (`/watchlist`)
-- Track anime & live-action adaptations
-- Season and episode progress per series
-
-### 🗓️ Timelines (`/timelines`)
-- Interactive universe reading orders
-- Marvel MCU, DC Batman Sagas, Spider-Verse, One Piece, and more
-
-### 💾 Data Persistence
-- All data saved to browser `localStorage`
-- JSON backup and restore available in `/profile`
+```text
+frontend/src/
+├── 📁 services/                 # 🔌 API & Repository Isolation (Backend Ready)
+│   ├── api.js                   # Axios base client (Base URL, JWT headers, 401 response interceptors)
+│   ├── authService.js           # Login, register & session storage service
+│   ├── comicService.js          # Async comic entry & watchlist API service
+│   └── timelineService.js       # Universe reading order & checklist progress API service
+│
+├── 📁 stores/                   # 🧠 Domain State Management
+│   ├── useAuthStore.js          # User session, level XP, streak counters & authentication
+│   ├── useUiStore.js            # Theme switching, dark mode toggle & global modal states
+│   └── useComicStore.js         # Master store delegating to domain services & sub-stores
+│
+├── 📁 composables/              # ⚡ Vue 3 Reactive Hooks
+│   ├── useTheme.js              # Theme switcher & dark mode hook
+│   └── useComicFilter.js        # Search, filter & sort algorithms
+│
+├── 📁 components/               # 🧩 Component Library
+│   ├── ui/                      # 🎨 Reusable Design System Primitives
+│   │   ├── BaseModal.vue        # Universal backdrop, dialog container & transition effects
+│   │   └── BaseBadge.vue        # Status & format tag badges
+│   ├── comic/                   # 📚 Comic Domain Components
+│   │   ├── ComicCard.vue        # Interactive card with progress bar, rating & quick actions
+│   │   ├── ComicFilterBar.vue   # Search input, status tabs, type dropdown & sort
+│   │   ├── AddModal.vue         # Add/edit comic entry modal
+│   │   └── ShareChecklistModal.vue # Exportable pop-art share card generator
+│   └── timeline/                # 🗓️ Timeline Domain Components
+│       ├── TimelineCard.vue     # Universe issue & event checklist item
+│       └── TimelineFilter.vue   # Universe selector tabs & search
+│
+└── 📁 views/                    # 🖥️ Page Containers
+    ├── ShelfView.vue            # Main shelf library dashboard
+    ├── LandingView.vue          # Hero landing page with animated 2x2 showcase
+    ├── TimelinesView.vue        # Interactive universe reading order timelines
+    ├── DiscoverView.vue         # Community discovery feed
+    ├── AchievementsView.vue    # Reader level, badges & trophy room
+    ├── StatsView.vue            # GitHub-style annual activity heatmap & analytics
+    ├── ProfileView.vue          # User profile & JSON backup/restore
+    └── WatchlistView.vue        # TV & anime adaptations tracker
+```
 
 ---
 
-## 🚀 Getting Started
+## 🎨 POP ART DESIGN SYSTEM
+
+ComicVerse takes visual inspiration from classic 1960s **Roy Lichtenstein Pop Art** & modern comic books:
+
+```text
+ ┌──────────────────────┬──────────────────────┬──────────────────────┐
+ │  CRIMSON RED         │  ELECTRIC YELLOW     │  ROYAL PURPLE        │
+ │  HEX: #FF1744        │  HEX: #FFD600        │  HEX: #AA00FF        │
+ ├──────────────────────┼──────────────────────┼──────────────────────┤
+ │  NEON GREEN          │  FLAME ORANGE        │  PARCHMENT           │
+ │  HEX: #00E676        │  HEX: #FF6D00        │  HEX: #FAF4E8        │
+ └──────────────────────┴──────────────────────┴──────────────────────┘
+```
+
+* **Halftone Textures**: Subtle radial dot pattern backgrounds (`radial-gradient(circle, rgba(0,0,0,0.08) 1.2px, transparent 1.2px)`).
+* **Hard Pop Shadows**: Solid `3px 3px 0 #111111` offset box-shadows.
+* **Punchy Typography**: Google Fonts **Bangers** for titles, **Comic Neue** for dialogue, and **Outfit** for clean metrics.
+
+---
+
+## ⚡ FEATURES AT A GLANCE
+
+### 💥 Interactive Pop-Art Cards
+Every comic card features progress bars, SVG star ratings (`10/10`), status badges (`READING`, `COMPLETED`, `PLAN TO READ`), quick `+1 Chapter` increment buttons, and action overlays.
+
+### 🗓️ Universe Reading Orders
+Interactive chronologies for **Marvel MCU**, **DC Batman Sagas**, **One Piece**, **Naruto**, **Attack on Titan**, and **MonsterVerse Godzilla**. Generate & export custom share cards with `html2canvas`.
+
+### 🏆 XP & Reader Leveling
+Earn XP for reading chapters and completing titles. Level up from **Initiate** (Lvl 1) to **Multiverse Arch-Mage** (Lvl 50+).
+
+### 📊 Reading Heatmap & Analytics
+GitHub-style 365-day activity calendar, format distribution charts, and reading velocity meters.
+
+---
+
+## 🚀 GETTING STARTED
+
+### Prerequisites
+* **Node.js** >= 18.x
+* **npm** >= 9.x
+
+### Installation & Local Setup
 
 ```bash
-# Install dependencies
-cd frontend
+# 1. Clone repository
+git clone https://github.com/Kurt7275/comic-tracker.git
+cd comic-tracker/frontend
+
+# 2. Install dependencies
 npm install
 
-# Run dev server
+# 3. Launch Vite development server
 npm run dev
 
-# Build for production
+# 4. Build production bundle
 npm run build
 ```
 
-App runs at: **http://localhost:5173**
+App runs locally at: **`http://localhost:5173`** (or `http://localhost:5174`)
 
 ---
 
-## 🔗 Links
+## 🔌 BACKEND API INTEGRATION
 
-- **GitHub**: [github.com/Kurt7275/budget-tracker](https://github.com/Kurt7275/comic-tracker)
+ComicVerse is pre-architected for instant backend integration:
 
----
-
-## 📌 Roadmap / Next Steps
-
-- [ ] Real Google OAuth authentication
-- [ ] Backend API (Node.js / Supabase) for cross-device sync
-- [ ] Search & add titles from external APIs (MangaDex, Marvel API)
-- [ ] Push notifications for new chapter releases
-- [ ] Mobile responsive layout
-- [ ] Dark mode toggle
-- [ ] Social features — share your shelf
+1. Create a `.env` file in `frontend/`:
+   ```env
+   VITE_API_URL=https://api.yourdomain.com/api
+   ```
+2. The Axios client in [`src/services/api.js`](file:///Users/mac/projects/comic-tracker/frontend/src/services/api.js) automatically attaches Bearer tokens and handles API endpoints.
+3. If the backend is offline, the app seamlessly falls back to persistent local storage with zero runtime crashes.
 
 ---
 
-*Built with love and too many comic books.*
+## 📄 LICENSE
+
+Distributed under the **MIT License**. See `LICENSE` for details.
+
+<div align="center">
+
+*Built with ❤️ and too many comic books.*
+
+</div>
