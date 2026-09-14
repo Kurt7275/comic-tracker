@@ -20,6 +20,9 @@
     <!-- Global Pop-Art Add Modal -->
     <AddModal />
 
+    <!-- Global Profile Modal -->
+    <ProfileModal />
+
     <!-- Global Pop-Art Logout Overlay -->
     <LogoutOverlay />
   </div>
@@ -28,6 +31,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import AddModal from './components/AddModal.vue'
+import ProfileModal from './components/ProfileModal.vue'
 import LogoutOverlay from './components/LogoutOverlay.vue'
 
 const loading = ref(true)

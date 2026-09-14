@@ -139,9 +139,9 @@
 
     <!-- Menu Dropdown -->
     <div v-if="isMenuOpen" class="cs-menu-dropdown">
-      <router-link to="/profile" class="cs-menu-item" @click="isMenuOpen = false">
+      <button type="button" class="cs-menu-item" @click="openProfileModal">
         Profile (Lv.{{ comicStore.user.level }})
-      </router-link>
+      </button>
       <div class="cs-menu-divider"></div>
       <button type="button" class="cs-menu-item" @click="triggerAddModal">
         Add New Title
@@ -198,6 +198,11 @@ function triggerAddModal() {
 function handleSignOut() {
   isMenuOpen.value = false
   comicStore.triggerLogout(router)
+}
+
+function openProfileModal() {
+  isMenuOpen.value = false
+  window.dispatchEvent(new CustomEvent('open-profile-modal'))
 }
 
 function setTheme(themeId) {
