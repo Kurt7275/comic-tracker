@@ -54,20 +54,16 @@
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { comicStore } from '../stores/useComicStore.js'
+import { authService } from '../services/authService.js'
 import '../assets/auth.css'
 
 const router = useRouter()
 const isLoading = ref(false)
 
-async function handleGoogleSignIn() {
+function handleGoogleSignIn() {
   isLoading.value = true
-  await new Promise(r => setTimeout(r, 450))
-  comicStore.login({
-    name: 'Captain Comic',
-    username: 'captain_comic',
-    email: 'captain@comicverse.online'
-  })
-  router.push('/shelf')
+  // Redirect browser to Laravel Socialite Google OAuth endpoint
+  window.location.href = authService.getGoogleRedirectUrl()
 }
 </script>
 

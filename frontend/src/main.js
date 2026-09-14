@@ -16,6 +16,7 @@ const WatchlistView    = () => import('./views/WatchlistView.vue')
 const StatsView        = () => import('./views/StatsView.vue')
 const AchievementsView = () => import('./views/AchievementsView.vue')
 const ProfileView      = () => import('./views/ProfileView.vue')
+const AuthCallbackView = () => import('./views/AuthCallbackView.vue')
 
 const router = createRouter({
   history: createWebHistory(),
@@ -23,6 +24,7 @@ const router = createRouter({
     { path: '/',             name: 'Landing',      component: LandingView },
     { path: '/login',        name: 'Login',        component: LoginView },
     { path: '/register',     name: 'Register',     component: LoginView },
+    { path: '/auth/callback',name: 'AuthCallback', component: AuthCallbackView },
     { path: '/shelf',        name: 'Shelf',        component: ShelfView },
     { path: '/discover',     name: 'Discover',     component: DiscoverView },
     { path: '/feed',         name: 'Feed',         component: FeedView },
