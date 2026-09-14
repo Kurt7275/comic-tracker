@@ -1,13 +1,13 @@
 providers = ["php"]
 
-[phases.setup]
-nixPkgs = ["php84", "composer"]
-
 [phases.install]
-cmds = ["cd backend && composer install --no-dev --optimize-autoloader"]
+cmds = ["composer install --no-dev --optimize-autoloader --working-dir=backend"]
 
 [phases.build]
-cmds = ["cd backend && php artisan config:cache && php artisan route:cache"]
+cmds = [
+  "cd backend && php artisan config:cache",
+  "cd backend && php artisan route:cache"
+]
 
 [start]
 cmd = "cd backend && php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"
