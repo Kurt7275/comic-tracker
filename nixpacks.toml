@@ -4,10 +4,15 @@ providers = ["php"]
 nixPkgs = ["php84", "php84Packages.composer"]
 
 [phases.install]
-cmds = ["composer install --no-dev --optimize-autoloader --working-dir=backend"]
+cmds = [
+  "mkdir -p backend/bootstrap/cache backend/storage/framework/sessions backend/storage/framework/views backend/storage/framework/cache/data backend/storage/logs",
+  "chmod -R 775 backend/bootstrap/cache backend/storage",
+  "COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader --no-scripts --working-dir=backend"
+]
 
 [phases.build]
 cmds = [
+  "cd backend && php artisan package:discover --ansi",
   "cd backend && php artisan config:cache",
   "cd backend && php artisan route:cache"
 ]
