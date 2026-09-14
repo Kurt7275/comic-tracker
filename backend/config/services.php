@@ -38,7 +38,7 @@ return [
     'google' => [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-        'redirect' => (env('GOOGLE_REDIRECT_URI') && parse_url(env('GOOGLE_REDIRECT_URI'), PHP_URL_HOST)) ? env('GOOGLE_REDIRECT_URI') : 'http://localhost/api/auth/google/callback',
+        'redirect' => (env('GOOGLE_REDIRECT_URI') && parse_url(env('GOOGLE_REDIRECT_URI'), PHP_URL_HOST) && !preg_match('/[\$\{\}\[\]]/', (string) parse_url(env('GOOGLE_REDIRECT_URI'), PHP_URL_HOST))) ? env('GOOGLE_REDIRECT_URI') : 'http://localhost/api/auth/google/callback',
     ],
 
 ];
