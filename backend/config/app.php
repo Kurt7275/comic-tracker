@@ -52,7 +52,16 @@ return [
     |
     */
 
-    'url' => (env('APP_URL') && parse_url(env('APP_URL'), PHP_URL_HOST) && !preg_match('/[\$\{\}\[\]]/', (string) parse_url(env('APP_URL'), PHP_URL_HOST))) ? env('APP_URL') : 'http://localhost',
+    'url' => (function() {
+        $url = env('APP_URL');
+        if ($url && parse_url($url, PHP_URL_HOST) && !preg_match('/[\$\{\}\[\]]/', (string) parse_url($url, PHP_URL_HOST))) {
+            return $url;
+        }
+        if (env('RAILWAY_PUBLIC_DOMAIN')) {
+            return 'https://' . env('RAILWAY_PUBLIC_DOMAIN');
+        }
+        return 'http://localhost';
+    })(),
 
     /*
     |--------------------------------------------------------------------------

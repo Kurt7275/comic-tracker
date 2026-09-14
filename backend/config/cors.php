@@ -17,7 +17,8 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => [
+    'allowed_origins' => array_values(array_filter([
+        env('FRONTEND_URL'),
         'https://kurtverse.vercel.app',
         'http://localhost:3032',
         'http://127.0.0.1:3032',
@@ -27,9 +28,9 @@ return [
         'http://127.0.0.1:5173',
         'http://localhost:5174',
         'http://127.0.0.1:5174',
-    ],
+    ])),
 
-    'allowed_origins_patterns' => [],
+    'allowed_origins_patterns' => ['#^https?://.*\.vercel\.app$#'],
 
     'allowed_headers' => ['*'],
 
