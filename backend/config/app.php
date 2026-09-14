@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
+    'url' => (env('APP_URL') && parse_url(env('APP_URL'), PHP_URL_HOST)) ? env('APP_URL') : 'http://localhost',
 
     /*
     |--------------------------------------------------------------------------
