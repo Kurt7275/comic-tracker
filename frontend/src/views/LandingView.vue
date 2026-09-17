@@ -55,6 +55,13 @@
               class="f-pic2-card"
               :class="'border-' + comic.colorTheme"
             >
+              <!-- Floating Top-Left Bookmark / Badge (if specified) -->
+              <div v-if="comic.badgeTopLeft" class="f-pic2-badge-top-left" :title="comic.badgeTopLeft">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="#FFD600" stroke="#111111" stroke-width="2.5">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              </div>
+
               <!-- Floating Corner Burst Tag (Hangs outside top-right corner) -->
               <div class="f-pic2-burst-tag" :class="comic.colorTheme">
                 {{ comic.burstText }}
@@ -66,6 +73,8 @@
                   :src="comic.cover"
                   :alt="comic.title"
                   class="f-pic2-cover-img"
+                  loading="lazy"
+                  referrerpolicy="no-referrer"
                 />
               </div>
 
@@ -132,12 +141,10 @@
                     </svg>
                     <span>{{ comic.streak }}</span>
                   </span>
-                  <router-link to="/login" class="f-pic2-btn-minus"
-                    >−</router-link
-                  >
-                  <router-link to="/login" class="f-pic2-btn-plus-red"
-                    >＋</router-link
-                  >
+                  <template v-if="comic.streak">
+                    <router-link to="/login" class="f-pic2-btn-minus">−</router-link>
+                    <router-link to="/login" class="f-pic2-btn-plus">＋</router-link>
+                  </template>
                   <router-link
                     v-if="comic.showSync"
                     to="/login"
@@ -145,8 +152,8 @@
                     title="Sync / Re-read"
                   >
                     <svg
-                      width="11"
-                      height="11"
+                      width="12"
+                      height="12"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -402,62 +409,62 @@ function setTheme(themeId) {
 const PREVIEW_COMICS = [
   {
     id: 1,
-    title: "SPIDER-MAN: Brand New Day",
+    title: "The Amazing Spider-Man (2025)",
     type: "COMICS",
     colorTheme: "green",
     burstText: "POW!",
-    badgeTopLeft: "I",
-    cover:
-      "https://cdn2.penguin.com.au/covers/original/9781302968663.jpg?w=600&auto=format&fit=crop&q=80",
+    badgeTopLeft: "★",
+    cover: "https://comicvine.gamespot.com/a/uploads/scale_small/6/67663/8511026-4223850769-20832.jpg",
     progressText: "CH. 28 / 35",
     progressPercent: 80,
-    rating: "10/10",
+    rating: "10",
     streak: "7D",
-    showSync: true,
+    genreTags: ["Action", "Superhero"],
+    showSync: false,
   },
   {
     id: 2,
-    title: "SOLO LEVELING",
+    title: "Solo Leveling",
     type: "MANHWA",
     colorTheme: "purple",
     burstText: "KA-POW!",
-    badgeTopLeft: "",
-    cover:
-      "https://upload.wikimedia.org/wikipedia/en/6/6c/Solo_Leveling_Volume_1_Cover.jpg?utm_source=en.wikipedia.org&utm_campaign=parser&utm_content=thumbnail_unscaled",
+    badgeTopLeft: "★",
+    cover: "https://upload.wikimedia.org/wikipedia/en/6/6c/Solo_Leveling_Volume_1_Cover.jpg",
     progressText: "CH. 179 / 179",
     progressPercent: 100,
-    rating: "9/10",
+    rating: "9",
     streak: "14D",
+    genreTags: ["Action", "Fantasy"],
     showSync: true,
   },
   {
     id: 3,
-    title: "TOWER OF GOD",
+    title: "Tower of God",
     type: "WEBTOON",
     colorTheme: "green",
     burstText: "POW!",
     badgeTopLeft: "",
-    cover:
-      "https://upload.wikimedia.org/wikipedia/en/7/7d/Tower_of_God_Volume_1_Cover.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled?w=600&auto=format&fit=crop&q=80",
+    cover: "https://upload.wikimedia.org/wikipedia/en/7/7d/Tower_of_God_Volume_1_Cover.jpg",
     progressText: "CH. 245 / 600",
     progressPercent: 41,
-    rating: "8/10",
+    rating: "8",
     streak: "5D",
-    showSync: true,
+    genreTags: ["Adventure", "Mystery"],
+    showSync: false,
   },
   {
     id: 4,
-    title: "JUJUTSU KAISEN",
+    title: "Jujutsu Kaisen",
     type: "MANGA",
     colorTheme: "green",
     burstText: "POW!",
     badgeTopLeft: "",
-    cover:
-      "https://upload.wikimedia.org/wikipedia/en/4/46/Jujutsu_kaisen.jpg?utm_source=en.wikipedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled?w=600&auto=format&fit=crop&q=80",
+    cover: "https://upload.wikimedia.org/wikipedia/en/4/46/Jujutsu_kaisen.jpg",
     progressText: "CH. 245 / 271",
     progressPercent: 90,
-    rating: "9/10",
+    rating: "9",
     streak: "5D",
+    genreTags: ["Dark", "Supernatural"],
     showSync: true,
   },
 ];

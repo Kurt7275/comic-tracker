@@ -1,3 +1,2 @@
 #!/bin/bash
-export DYLD_LIBRARY_PATH="/usr/local/opt/llvm/lib/c++"
-exec "/Users/mac/Library/Application Support/Herd/bin/php84" "$@"
+exec "/Applications/MAMP/bin/php/php8.4.17/bin/php" "$@"
