@@ -1,6 +1,8 @@
 import { reactive, watch } from 'vue'
 import { authService } from '../services/authService'
 
+const LOGOUT_OVERLAY_DURATION_MS = 1450
+
 export const useAuthStore = reactive({
   user: authService.getLocalUser(),
   isLoggingOut: false,
@@ -36,13 +38,18 @@ export const useAuthStore = reactive({
   triggerLogout(router) {
     if (this.isLoggingOut) return
     this.isLoggingOut = true
-    setTimeout(async () => {
-      await this.logout()
+
+    setTimeout(() => {
+      this.user.isLoggedIn = false
+      localStorage.removeItem('auth_token')
+      authService.saveLocalUser(this.user)
       this.isLoggingOut = false
       if (router) {
-        router.push('/')
+        router.push('/room')
       }
-    }, 1800)
+
+      authService.logout()
+    }, LOGOUT_OVERLAY_DURATION_MS)
   },
 
   addXp(amount) {

@@ -2,14 +2,18 @@
   <div class="cs-standalone-login-page">
 
     <!-- ── Top-Left Back Button ── -->
-    <router-link to="/" class="cs-login-back-btn" title="Back to Home">
+    <router-link
+      to="/landing"
+      :class="['cs-login-back-btn', { 'login-content-enter': shouldAnimateSignIn }]"
+      title="Back to Landing Page"
+    >
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
         <path d="M19 12H5M12 19l-7-7 7-7"/>
       </svg>
     </router-link>
 
     <!-- ── Center Exact Login Card ── -->
-    <div class="cs-standalone-center-wrap">
+    <div :class="['cs-standalone-center-wrap', { 'login-content-enter': shouldAnimateSignIn }]">
       <div class="f-exact-login-card">
 
         <!-- Red Header Banner -->
@@ -51,14 +55,14 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-import { comicStore } from '../stores/useComicStore.js'
+import { computed, ref } from 'vue'
+import { useRoute } from 'vue-router'
 import { authService } from '../services/authService.js'
 import '../assets/auth.css'
 
-const router = useRouter()
+const route = useRoute()
 const isLoading = ref(false)
+const shouldAnimateSignIn = computed(() => route.query.transition === 'signin')
 
 function handleGoogleSignIn() {
   isLoading.value = true
@@ -117,5 +121,22 @@ function handleGoogleSignIn() {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.login-content-enter {
+  animation: loginReferenceEnter 420ms ease both;
+  will-change: opacity, transform;
+}
+
+@keyframes loginReferenceEnter {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

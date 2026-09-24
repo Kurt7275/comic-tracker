@@ -15,7 +15,11 @@
     </transition>
 
     <!-- Main App -->
-    <router-view />
+    <router-view v-slot="{ Component, route }">
+      <transition :name="getRouteTransition(route)">
+        <component :is="Component" :key="route.fullPath" />
+      </transition>
+    </router-view>
 
     <!-- Global Pop-Art Add Modal -->
     <AddModal />
@@ -29,26 +33,61 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, watch } from 'vue'
+import { useRoute } from 'vue-router'
 import AddModal from './components/AddModal.vue'
 import ProfileModal from './components/ProfileModal.vue'
 import LogoutOverlay from './components/LogoutOverlay.vue'
 
-const loading = ref(true)
+const route = useRoute()
+const loading = ref(false)
+const dashboardRouteNames = new Set([
+  'Shelf',
+  'Watchlist',
+  'Discover',
+  'Feed',
+  'Timelines',
+  'Achievements',
+  'Stats',
+  'Profile',
+])
 
-// Lock scroll immediately — before any rendering — so no scrollbar shows during loader
-document.documentElement.style.overflowY = 'hidden'
-document.body.style.overflow = 'hidden'
+function getRouteTransition(routeLocation) {
+  if (routeLocation.name === 'MilesRoom') return 'room-route'
+  if (routeLocation.query.from === 'monitor') return 'monitor-route'
+  if (dashboardRouteNames.has(routeLocation.name)) return 'dashboard-route'
+  if (
+    (routeLocation.name === 'Login' || routeLocation.name === 'Register') &&
+    routeLocation.query.transition === 'signin'
+  ) {
+    return 'login-fade'
+  }
+  return 'page-fade'
+}
 
-onMounted(() => {
-  setTimeout(() => {
-    loading.value = false
-    // Restore overflow-y: scroll to keep scrollbar gutter always reserved
-    // This prevents layout shift when navigating between short/long pages
-    document.documentElement.style.overflowY = 'scroll'
-    document.body.style.overflow = ''
-  }, 2000)
-})
+// Manage scrollbars per route: hide completely in Miles Room, restore in regular pages
+watch(
+  () => route.path,
+  (path) => {
+    const isRoomRoute = path === '/' || path === '/room' || path === '/portal'
+    document.documentElement.classList.toggle('is-room-route', isRoomRoute)
+
+    if (isRoomRoute) {
+      document.documentElement.style.overflow = 'hidden'
+      document.documentElement.style.overflowY = 'hidden'
+      document.documentElement.style.scrollbarGutter = 'auto'
+      document.body.style.overflow = 'hidden'
+      document.body.style.overflowY = 'hidden'
+    } else {
+      document.documentElement.style.overflow = ''
+      document.documentElement.style.overflowY = ''
+      document.documentElement.style.scrollbarGutter = ''
+      document.body.style.overflow = ''
+      document.body.style.overflowY = ''
+    }
+  },
+  { immediate: true }
+)
 </script>
 
 <style>
@@ -80,20 +119,63 @@ onMounted(() => {
     transform: scale(1) translateY(0);
   }
 }
-/* ── Global Page Fade & Slide Transition ── */
-.page-fade-enter-active,
+/* ── Reference-style page transition ── */
+.page-fade-enter-active {
+  transition: opacity 500ms ease, transform 500ms ease;
+}
+
 .page-fade-leave-active {
-  transition: opacity 240ms cubic-bezier(0.16, 1, 0.3, 1), transform 240ms cubic-bezier(0.16, 1, 0.3, 1);
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+  opacity: 0;
 }
 
 .page-fade-enter-from {
   opacity: 0;
-  transform: translateY(8px);
+  transform: translateY(24px);
 }
 
-.page-fade-leave-to {
+.room-route-enter-active,
+.room-route-leave-active,
+.dashboard-route-enter-active,
+.dashboard-route-leave-active {
+  transition: none;
+}
+
+.login-fade-enter-active,
+.login-fade-leave-active {
+  transition:
+    opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
+    transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.login-fade-enter-active {
+  position: relative;
+  z-index: 1;
+}
+
+.login-fade-leave-active {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  width: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.login-fade-enter-from {
   opacity: 0;
-  transform: translateY(-8px);
+  transform: translateY(24px) scale(0.99);
+}
+
+.login-fade-leave-to {
+  opacity: 0;
+  transform: translateY(-18px) scale(0.985);
 }
 
 /* ── Loader Fade Out ── */

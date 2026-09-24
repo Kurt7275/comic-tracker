@@ -142,7 +142,7 @@
                     <!-- Footer -->
                     <div class="classic-footer" :style="{ background: universeColors.primary }">
                       <span class="classic-brand">COMICVERSE</span>
-                      <span class="classic-brand-sub">comicverse.online</span>
+                      <span class="classic-brand-sub">{{ SHARE_FOOTER_TEXT }}</span>
                     </div>
                   </div>
                 </template>
@@ -164,7 +164,7 @@
                       <span class="minimal-fraction">{{ totalDone }}/{{ totalItems }}</span>
                     </div>
                     <div class="minimal-bottom">
-                      <span class="minimal-footer-text">comicverse.online</span>
+                      <span class="minimal-footer-text">{{ SHARE_FOOTER_TEXT }}</span>
                     </div>
                   </div>
                 </template>
@@ -187,7 +187,7 @@
                       </div>
                     </div>
                     <div class="spotlight-bottom">
-                      <span class="spotlight-brand">comicverse.online</span>
+                      <span class="spotlight-brand">{{ SHARE_FOOTER_TEXT }}</span>
                     </div>
                   </div>
                 </template>
@@ -214,6 +214,7 @@ const props = defineProps({
 })
 
 const emit = defineEmits(['close'])
+const SHARE_FOOTER_TEXT = 'COMICVERSE'
 
 const STYLES = [
   { key: 'classic', label: 'CLASSIC' },

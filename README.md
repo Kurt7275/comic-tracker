@@ -1,175 +1,168 @@
-```text
-  ██████╗ ██████╗ ███╗   ███╗██╗██████╗██╗   ██╗███████╗██████╗ ███████╗███████╗
- ██╔════╝██╔═══██╗████╗ ████║██║██╔════╝██║   ██║██╔════╝██╔══██╗██╔════╝██╔════╝
- ██║     ██║   ██║██╔████╔██║██║██║     ██║   ██║█████╗  ██████╔╝███████╗█████╗  
- ██║     ██║   ██║██║╚██╔╝██║██║██║     ╚██╗ ██╔╝██╔══╝  ██╔══██╗╚════██║██╔══╝  
- ╚██████╗╚██████╔╝██║ ╚═╝ ██║██║╚██████╗ ╚████╔╝ ███████╗██║  ██║███████║███████╗
-  ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚═╝ ╚═════╝  ╚═══╝  ╚══════╝╚═╝  ╚═╝╚══════╝╚══════╝
-```
+# ⚡ COMICVERSE
 
-<div align="center">
+> **Your entire reading life. One pop-art multiverse.**
 
-# COMICVERSE
-### *YOUR ENTIRE READING LIFE. ONE POP-ART UNIVERSE.*
-
-![Vue 3](https://img.shields.io/badge/Vue%203-35495E?style=for-the-badge&logo=vue.js&logoColor=4FC08D)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=FFD600)
-![Pinia Architecture](https://img.shields.io/badge/Pinia-Store_Modularized-7C3AED?style=for-the-badge&logo=vue.js&logoColor=FFF)
-![Backend Ready](https://img.shields.io/badge/Backend-API_Ready-00E676?style=for-the-badge&logo=express&logoColor=FFF)
-![License](https://img.shields.io/badge/License-MIT-FF1744?style=for-the-badge)
-
-**ComicVerse** is a modern media tracker built for comic, manga, manhwa, and webtoon readers. Track reading progress, universe timelines, adaptations, streaks, and achievements—all wrapped in a clean, halftone-inspired design system.
-
-[Demo Features](#why-comicverse) • [Getting Started](#getting-started) • [Architecture](#project-architecture) • [Design System](#pop-art-design-system)
+ComicVerse is a modern, pop-art-inspired media tracker built for comic, manga, manhwa, and webtoon enthusiasts. Track reading progress, universe timelines (MCU, Batman, Spider-Verse), watchlists, daily reading streaks, and reader XP achievements—starting from an interactive 3D Miles Morales bedroom portal!
 
 ---
 
-</div>
+## 🚀 Quick Start: Running the Entire Project
 
-## WHY COMICVERSE?
+To run ComicVerse with its full stack (Laravel backend API + Vue 3 frontend), open two terminal windows:
 
-```text
- ┌─────────────────────────────────────────────────────────────────────────┐
- │   TRACK EVERYTHING  │ Manga • Manhwa • Webtoons • Comics • Novels       │
- │   DAILY STREAKS     │ Streak counters & longest reading records         │
- │   UNIVERSE TIMELINES│ MCU, Batman, Spider-Verse & One Piece Orders      │
- │   WATCHLIST         │ Anime, TV shows & movie adaptations               │
- │   ACHIEVEMENTS      │ Earn XP & level up from Initiate to Arch-Mage     │
- │   BACKEND READY     │ Repository & Service abstraction pre-built        │
- └─────────────────────────────────────────────────────────────────────────┘
-```
-
----
-
-## PROJECT ARCHITECTURE
-
-ComicVerse follows an **Enterprise-Grade Modular Architecture** designed for zero-friction backend integration:
-
-```text
-frontend/src/
-├── services/                    # API & Repository Isolation (Backend Ready)
-│   ├── api.js                   # Axios base client (Base URL, JWT headers, 401 response interceptors)
-│   ├── authService.js           # Login, register & session storage service
-│   ├── comicService.js          # Async comic entry & watchlist API service
-│   └── timelineService.js       # Universe reading order & checklist progress API service
-│
-├── stores/                      # Domain State Management
-│   ├── useAuthStore.js          # User session, level XP, streak counters & authentication
-│   ├── useUiStore.js            # Theme switching, dark mode toggle & global modal states
-│   └── useComicStore.js         # Master store delegating to domain services & sub-stores
-│
-├── composables/                 # Vue 3 Reactive Hooks
-│   ├── useTheme.js              # Theme switcher & dark mode hook
-│   └── useComicFilter.js        # Search, filter & sort algorithms
-│
-├── components/                  # Component Library
-│   ├── ui/                      # Reusable Design System Primitives
-│   │   ├── BaseModal.vue        # Universal backdrop, dialog container & transition effects
-│   │   └── BaseBadge.vue        # Status & format tag badges
-│   ├── comic/                   # Comic Domain Components
-│   │   ├── ComicCard.vue        # Interactive card with progress bar, rating & quick actions
-│   │   ├── ComicFilterBar.vue   # Search input, status tabs, type dropdown & sort
-│   │   ├── AddModal.vue         # Add/edit comic entry modal
-│   │   └── ShareChecklistModal.vue # Exportable pop-art share card generator
-│   └── timeline/                # Timeline Domain Components
-│       ├── TimelineCard.vue     # Universe issue & event checklist item
-│       └── TimelineFilter.vue   # Universe selector tabs & search
-│
-└── views/                       # Page Containers
-    ├── ShelfView.vue            # Main shelf library dashboard
-    ├── LandingView.vue          # Hero landing page with animated 2x2 showcase
-    ├── TimelinesView.vue        # Interactive universe reading order timelines
-    ├── DiscoverView.vue         # Community discovery feed
-    ├── AchievementsView.vue    # Reader level, badges & trophy room
-    ├── StatsView.vue            # GitHub-style annual activity heatmap & analytics
-    ├── ProfileView.vue          # User profile & JSON backup/restore
-    └── WatchlistView.vue        # TV & anime adaptations tracker
-```
-
----
-
-## POP ART DESIGN SYSTEM
-
-ComicVerse takes visual inspiration from classic 1960s **Roy Lichtenstein Pop Art** & modern comic books:
-
-```text
- ┌──────────────────────┬──────────────────────┬──────────────────────┐
- │  CRIMSON RED         │  ELECTRIC YELLOW     │  ROYAL PURPLE        │
- │  HEX: #FF1744        │  HEX: #FFD600        │  HEX: #AA00FF        │
- ├──────────────────────┼──────────────────────┼──────────────────────┤
- │  NEON GREEN          │  FLAME ORANGE        │  PARCHMENT           │
- │  HEX: #00E676        │  HEX: #FF6D00        │  HEX: #FAF4E8        │
- └──────────────────────┴──────────────────────┴──────────────────────┘
-```
-
-* **Halftone Textures**: Subtle radial dot pattern backgrounds (`radial-gradient(circle, rgba(0,0,0,0.08) 1.2px, transparent 1.2px)`).
-* **Hard Pop Shadows**: Solid `3px 3px 0 #111111` offset box-shadows.
-* **Punchy Typography**: Google Fonts **Bangers** for titles, **Comic Neue** for dialogue, and **Outfit** for clean metrics.
-
----
-
-## FEATURES AT A GLANCE
-
-### Interactive Pop-Art Cards
-Every comic card features progress bars, SVG star ratings (`10/10`), status badges (`READING`, `COMPLETED`, `PLAN TO READ`), quick `+1 Chapter` increment buttons, and action overlays.
-
-### Universe Reading Orders
-Interactive chronologies for **Marvel MCU**, **DC Batman Sagas**, **One Piece**, **Naruto**, **Attack on Titan**, and **MonsterVerse Godzilla**. Generate & export custom share cards with `html2canvas`.
-
-### XP & Reader Leveling
-Earn XP for reading chapters and completing titles. Level up from **Initiate** (Lvl 1) to **Multiverse Arch-Mage** (Lvl 50+).
-
-### Reading Heatmap & Analytics
-GitHub-style 365-day activity calendar, format distribution charts, and reading velocity meters.
-
----
-
-## GETTING STARTED
-
-### Prerequisites
-* **Node.js** >= 18.x
-* **npm** >= 9.x
-
-### Installation & Local Setup
+### 1. Start the Backend API (Laravel)
 
 ```bash
-# 1. Clone repository
-git clone https://github.com/Kurt7275/comic-tracker.git
-cd comic-tracker/frontend
+cd backend
 
-# 2. Install dependencies
-npm install
+# 1. Install dependencies (if first time)
+composer install
 
-# 3. Launch Vite development server
-npm run dev
+# 2. Copy environment file and generate application key (if first time)
+cp .env.example .env
+php artisan key:generate
 
-# 4. Build production bundle
-npm run build
+# 3. Run database migrations
+php artisan migrate
+
+# 4. Start the Laravel backend server on port 8888
+php artisan serve --port=8888
 ```
 
-App runs locally at: **`http://localhost:5173`** (or `http://localhost:5174`)
+> **Note for macOS / MAMP users:** If your default terminal PHP has issues, use the project MAMP wrapper:
+> ```bash
+> ../bin/php artisan serve --port=8888
+> ```
+> Backend API will be active at: **`http://localhost:8888`**
 
 ---
 
-## BACKEND API INTEGRATION
+### 2. Start the Frontend (Vue 3 + Vite)
 
-ComicVerse is pre-architected for instant backend integration:
+```bash
+cd frontend
 
-1. Create a `.env` file in `frontend/`:
-   ```env
-   VITE_API_URL=https://api.yourdomain.com/api
-   ```
-2. The Axios client in [`src/services/api.js`](file:///Users/mac/projects/comic-tracker/frontend/src/services/api.js) automatically attaches Bearer tokens and handles API endpoints.
-3. If the backend is offline, the app seamlessly falls back to persistent local storage with zero runtime crashes.
+# 1. Install dependencies (if first time)
+npm install
+
+# 2. Start the Vite development server
+npm run dev
+```
+
+Frontend app will be live at: **`http://localhost:3032`**
 
 ---
 
-## LICENSE
+## 🧪 Running Playwright E2E Tests
 
-Distributed under the **MIT License**. See `LICENSE` for details.
+ComicVerse includes comprehensive end-to-end (E2E) testing powered by **[Playwright](https://playwright.dev/)**. Tests run against both **Desktop Chromium** and **Mobile Chrome (Pixel 7)** viewports.
 
-<div align="center">
+### 1. Install Playwright Browsers (One-Time Setup)
 
-*Built with passion and dedication to comic archivism.*
+```bash
+cd frontend
+npx playwright install
+```
 
-</div>
+### 2. Test Commands
+
+Run all commands from the `frontend/` directory:
+
+| Command | Description |
+| :--- | :--- |
+| `npm run test:e2e` | **Headless Run (Default)**: Runs all test suites in the background and reports pass/fail directly in terminal. |
+| `npm run test:e2e:ui` | **Interactive UI Mode**: Opens Playwright’s interactive visual dashboard with time-travel debugging, screenshots, and live previews. |
+| `npm run test:e2e:headed` | **Headed Run**: Opens a visible browser window so you can watch automated tests interact live. |
+| `npm run test:e2e:report` | **HTML Report**: Opens the detailed HTML test report showing durations, traces, and screenshots. |
+
+> **Automated Dev Server**: `playwright.config.js` is pre-configured to automatically start the Vite dev server on port 3032 if it isn't already running. You can run tests at any time without manually starting `npm run dev` first.
+
+---
+
+### 3. Running Specific Test Suites
+
+- **Run only the Room Portal & Authentication tests:**
+  ```bash
+  npx playwright test tests/e2e/room-and-auth.spec.js
+  ```
+
+- **Run only the Universe Timelines tests:**
+  ```bash
+  npx playwright test tests/e2e/timelines.spec.js
+  ```
+
+- **Run tests on Desktop Chromium only:**
+  ```bash
+  npx playwright test --project=chromium
+  ```
+
+- **Run tests on Mobile Chrome only:**
+  ```bash
+  npx playwright test --project=mobile-chrome
+  ```
+
+- **Run a single test by name:**
+  ```bash
+  npx playwright test -g "login page"
+  ```
+
+---
+
+### 4. What the Tests Cover
+
+- **`room-and-auth.spec.js`**:
+  - Verifies the Miles' Room 3D portal renders with the live landing page iframe preview in the monitor.
+  - Verifies navigating from `/landing` to `/login` via the hero CTA.
+  - Verifies the comic sign-in card UI and that the top-left back button returns to `/landing`.
+  - Simulates a completed OAuth callback (`/auth/callback`) and verifies user session creation and redirect to `/shelf`.
+- **`timelines.spec.js`**:
+  - Verifies universe selection and default MCU phase rendering.
+  - Verifies type filter pills (MOVIE, SHOW, COMIC) and live search query filtering.
+  - Verifies checklist toggle interactions, toast notifications, and opening the exportable share modal.
+
+---
+
+## 🏛️ Project Structure
+
+```text
+comic-tracker/
+├── backend/                     # Laravel PHP API
+│   ├── app/                     # Controllers, Models, Middleware
+│   ├── routes/api.php           # REST API routes (shelf, auth, timelines)
+│   ├── database/migrations/     # Database schemas
+│   └── artisan                  # Laravel CLI
+│
+├── frontend/                    # Vue 3 + Vite Frontend
+│   ├── playwright.config.js     # Playwright E2E configuration (port 3032)
+│   ├── tests/e2e/               # Playwright test specifications
+│   │   ├── room-and-auth.spec.js# Portal, landing, and authentication tests
+│   │   └── timelines.spec.js    # Timelines, search, and checklist tests
+│   ├── src/
+│   │   ├── assets/              # Base CSS, themes, pop-art halftone styling
+│   │   ├── components/
+│   │   │   ├── portal/          # Miles' Room 3D portal & 2D sketchbook modal
+│   │   │   ├── Navbar.vue       # Header strip with ROOM, SHELF, STATS navigation
+│   │   │   └── ...              # Modals (Add, Profile, ShareChecklist)
+│   │   ├── stores/              # Pinia state stores (useComicStore, useAuthStore)
+│   │   ├── services/            # Axios API clients & local persistence fallbacks
+│   │   └── views/               # Route views (MilesRoomView, LandingView, ShelfView, etc.)
+│   └── package.json
+│
+├── bin/                         # Local development helper scripts
+└── README.md
+```
+
+---
+
+## 🎨 Pop-Art Design System
+
+- **Halftone Patterns**: Radial dot matrix backgrounds (`radial-gradient(circle, rgba(0,0,0,0.08) 1.2px, transparent 1.2px)`).
+- **Hard Offset Shadows**: `3px 3px 0 #111111` comic-book drop shadows.
+- **Typography**: `Bangers` for comic punchlines & titles, `Impact` for bold headers, and `Outfit` / `Comic Neue` for content readability.
+- **Color Palette**: Electric Yellow (`#F5D13B`), Crimson Red (`#EE3545`), Neon Green (`#44C555`), and Warm Parchment (`#FAF4E8`).
+
+---
+
+## 📄 License
+
+Distributed under the **MIT License**.

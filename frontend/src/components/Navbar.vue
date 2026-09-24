@@ -134,6 +134,18 @@
           <span class="cs-tab-sub">WRAPPED</span>
         </router-link>
 
+        <!-- 8. ROOM (Miles' Bedroom Portal) -->
+        <router-link to="/room" class="cs-nav-tab cs-nav-tab-room" active-class="active">
+          <div class="cs-tab-main">
+            <svg class="cs-tab-svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+            <span class="cs-tab-label">ROOM</span>
+          </div>
+          <span class="cs-tab-sub">PORTAL</span>
+        </router-link>
+
       </div>
     </nav>
 
@@ -146,9 +158,6 @@
       <button type="button" class="cs-menu-item" @click="triggerAddModal">
         Add New Title
       </button>
-      <router-link to="/" class="cs-menu-item" @click="isMenuOpen = false">
-        Landing Page
-      </router-link>
       <div class="cs-menu-divider"></div>
       <div class="cs-menu-theme-section">
         <span class="cs-menu-theme-label">THEME</span>

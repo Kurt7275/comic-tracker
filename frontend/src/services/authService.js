@@ -83,7 +83,7 @@ export const authService = {
 
   async logout() {
     try {
-      await api.post('/logout')
+      await api.post('/logout', null, { skipAuthRedirect: true })
     } catch {
       // Ignore network errors on logout
     } finally {

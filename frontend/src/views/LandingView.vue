@@ -1,13 +1,22 @@
 <template>
-  <div :class="['figma-page', 'theme-' + currentTheme]">
+  <div
+    :class="[
+      'figma-page',
+      'theme-' + currentTheme,
+      {
+        'landing-zoom-in': zoomOut,
+        'landing-signin-exit': isSigningIn,
+      },
+    ]"
+  >
     <!-- ── 1. Top Navbar ── -->
     <header class="f-nav">
-      <div class="f-nav-logo" @click="$router.push('/')">
+      <div class="f-nav-logo" @click="$router.push('/landing')">
         <span class="f-nav-logo-box">COMIC</span>
         <span class="f-nav-logo-text">VERSE</span>
       </div>
 
-      <router-link to="/login" id="f-nav-signin" class="f-nav-signin-btn">
+      <router-link :to="loginTransitionRoute" id="f-nav-signin" class="f-nav-signin-btn" @click.prevent="goToLogin">
         SIGN IN
       </router-link>
     </header>
@@ -27,7 +36,7 @@
             universe for your shelf, watchlist, stats, and achievements.
           </p>
 
-          <router-link to="/login" id="f-hero-start-btn" class="f-btn-red">
+          <router-link :to="loginTransitionRoute" id="f-hero-start-btn" class="f-btn-red" @click.prevent="goToLogin">
             <span>START NOW</span>
             <svg
               width="18"
@@ -142,14 +151,15 @@
                     <span>{{ comic.streak }}</span>
                   </span>
                   <template v-if="comic.streak">
-                    <router-link to="/login" class="f-pic2-btn-minus">−</router-link>
-                    <router-link to="/login" class="f-pic2-btn-plus">＋</router-link>
+                    <router-link :to="loginTransitionRoute" class="f-pic2-btn-minus" @click.prevent="goToLogin">−</router-link>
+                    <router-link :to="loginTransitionRoute" class="f-pic2-btn-plus" @click.prevent="goToLogin">＋</router-link>
                   </template>
                   <router-link
                     v-if="comic.showSync"
-                    to="/login"
+                    :to="loginTransitionRoute"
                     class="f-pic2-btn-sync"
                     title="Sync / Re-read"
+                    @click.prevent="goToLogin"
                   >
                     <svg
                       width="12"
@@ -369,7 +379,7 @@
     <div class="f-bottom-cta">
       <div class="f-badge-yellow">GET STARTED</div>
       <h2 class="f-bottom-title">READY TO START YOUR COMICVERSE?</h2>
-      <router-link to="/login" id="f-bottom-start-btn" class="f-btn-yellow-lg">
+      <router-link :to="loginTransitionRoute" id="f-bottom-start-btn" class="f-btn-yellow-lg" @click.prevent="goToLogin">
         START NOW
       </router-link>
     </div>
@@ -385,7 +395,8 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
+import { useRoute, useRouter } from "vue-router";
 import "../assets/auth.css";
 import {
   THEMES,
@@ -397,6 +408,25 @@ import {
    🎨 THEME TOGGLE CONFIGURATION
    ========================================================================== */
 const currentTheme = ref(applyThemeToDocument(getStoredTheme()));
+
+// The scale transition is reserved for the monitor -> landing navigation.
+const route = useRoute();
+const router = useRouter();
+const zoomOut = ref(route.query.from === "monitor");
+const isSigningIn = ref(false);
+const loginTransitionRoute = { path: "/login", query: { transition: "signin" } };
+onMounted(() => {
+  requestAnimationFrame(() => {
+    zoomOut.value = false;
+  });
+});
+
+function goToLogin() {
+  if (isSigningIn.value) return;
+
+  isSigningIn.value = true;
+  router.push(loginTransitionRoute);
+}
 
 function setTheme(themeId) {
   if (themeId === currentTheme.value) return;
@@ -469,3 +499,34 @@ const PREVIEW_COMICS = [
   },
 ];
 </script>
+
+<style scoped>
+/* Monitor-only entrance — seamless continuation of the monitor zoom-in */
+.figma-page {
+  transform-origin: center center;
+  transition: transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              opacity 0.5s ease;
+}
+
+.landing-zoom-in {
+  transform: scale(1.45);
+  opacity: 0;
+}
+
+.landing-signin-exit {
+  animation: landingSignInExit 220ms cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  pointer-events: none;
+}
+
+@keyframes landingSignInExit {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateY(-18px) scale(0.985);
+  }
+}
+</style>
