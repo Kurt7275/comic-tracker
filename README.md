@@ -6,23 +6,50 @@ ComicVerse is a modern, pop-art-inspired media tracker built for comic, manga, m
 
 ---
 
+## 🛠️ Prerequisites
+
+Make sure the following are installed and running on your machine:
+* **PostgreSQL** >= 14 (running on port `5432`)
+* **PHP** >= 8.2 (or MAMP PHP 8.4) with `pdo_pgsql` extension enabled
+* **Composer**
+* **Node.js** >= 18.x & **npm** >= 9.x
+
+---
+
 ## 🚀 Quick Start: Running the Entire Project
 
-To run ComicVerse with its full stack (Laravel backend API + Vue 3 frontend), open two terminal windows:
+To run ComicVerse with its full stack (PostgreSQL + Laravel backend API + Vue 3 frontend), open two terminal windows:
 
-### 1. Start the Backend API (Laravel)
+### 1. Database & Backend API (PostgreSQL + Laravel)
 
+#### A. Prepare PostgreSQL Database
+Ensure your PostgreSQL service is running and create the database (if not already created):
+```bash
+# Using PostgreSQL CLI
+createdb comic_tracker
+# Or log into psql and run: CREATE DATABASE comic_tracker;
+```
+
+#### B. Start the Laravel Backend
 ```bash
 cd backend
 
 # 1. Install dependencies (if first time)
 composer install
 
-# 2. Copy environment file and generate application key (if first time)
+# 2. Configure environment
 cp .env.example .env
 php artisan key:generate
 
-# 3. Run database migrations
+# Ensure your .env has PostgreSQL configured:
+# DB_CONNECTION=pgsql
+# DB_HOST=127.0.0.1
+# DB_PORT=5432
+# DB_DATABASE=comic_tracker
+# DB_USERNAME=postgres
+# DB_PASSWORD=postgres
+
+# 3. Run database migrations to set up PostgreSQL tables
 php artisan migrate
 
 # 4. Start the Laravel backend server on port 8888
@@ -126,7 +153,7 @@ Run all commands from the `frontend/` directory:
 
 ```text
 comic-tracker/
-├── backend/                     # Laravel PHP API
+├── backend/                     # Laravel PHP API & PostgreSQL Database
 │   ├── app/                     # Controllers, Models, Middleware
 │   ├── routes/api.php           # REST API routes (shelf, auth, timelines)
 │   ├── database/migrations/     # Database schemas
